@@ -1,16 +1,20 @@
 /***/ Nel seguente file sono contenute le istruzioni di esecuzinoe del file progetto "Progetto_mcf_pacchettodonde.py" \**\
 
-Il programma è in grado di costruire grafici di pacchetti d'onda e relativi spettri di potenza
-con dispersioni e numero di componenti diversi, e animazioni che ne descrivono il comportamento temporale.
+Il programma è in grado di costruire animazioni temporali di pacchetti d'onda e relativi spettri di potenza
+con dispersioni e numero di componenti diversi, descrivendone il comportamento temporale.
 
 Le dispersioni disponibili per il consulto sono:
 1) ---- w = sqrt(c * k)
 2) ---- w = sqrt(b + c * k^2)
 3) ---- w = c * k
 4) ---- w = c * k^2
+5) ---- w = c/k
+6) ---- w = k^4/c
+7) ---- w = k^2 - k
+
 dove "b" e "c" sono costanti arbitrarie.
 
-Il numero delle componenti disponibili sono:
+Il numero delle componenti disponibili per costruire i pacchetti sono:
 * --- 2
 * --- 20
 * --- 100
@@ -28,19 +32,24 @@ Il numero delle componenti disponibili sono:
 * --- 4000
 * --- 5000
 * --- 10000
-!! NOTA: con un numero di componenti più grande di 3000 le animazioni potrebbero non essere fluide e quindi soggette a scatti.
+!! NOTA: con un numero di componenti più grande di 3000 le animazioni potrebbero non essere molto fluide.
 
-Le opzioni di selezione della costante "c" disponibili sono contenute in un vettore di numeri INTERI da 0 a 3.000.000 compresi.
+E' possibile selezionare il valore della costante "c" tra quelli contenuti in un vettore di numeri INTERI da 0 a 3.000.000 compresi.
 !! Il valore di default di "c" è 30.000. Per valori troppo bassi o troppo alti saranno visibili solo parti del grafico, in quanto
 fuori del limite superiore per l'asse x, oppure mostrerà un grafico troppo compatto e schiacciato lungo l'asse x. Si consiglia di
 provare soltanto valori che vanno da 10.000 a 300.000
 
+---------------------------------------------------------------------ESECUZIONE----------------------------------------------------------------------------
+
 Per eseguire il programma è NECESSARIO specificare, in ordine: la dispersione che si vuole "--dispersione" seguito da una delle
-seguenti opzioni(che corrispondono per numero di elenco a quelle sopra per "w"):
+seguenti opzioni (che corrispondono per numero di elenco alle definizioni date sopra per "w"):
 1) ---- sck
 2) ---- sbck2
 3) ---- ck
 4) ---- ck2
+5) ---- cdk
+6) ---- k4dc
+7) ---- k2k
 
 ; il numero di componenti con il quale costruire il pacchetto d'onda attraverso "--grafico" seguito da una delle opzioni esposte precedentemente
 (2, 20, 100,...)
@@ -54,6 +63,8 @@ generato, mostrandone anche l'evoluzioine temporale.
 
 E' disponibile l'opzione "--show_all" che, se vera, mostra sia il pacchetto di onde generato con le volute specifiche, sia
 il sorrispondente spettro di potenza.
+
+-----------------------------------------------------------------------ESEMPI--------------------------------------------------------------------------------
 
 Alcuni esempi di chiamate sono:
 
