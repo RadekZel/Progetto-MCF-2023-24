@@ -48,7 +48,7 @@ def generate_frequencies(num_components, max_frequency):
     probability_distribution = lambda f: (6 / max_frequency**6) * f**5
     frequencies_array = numpy.linspace(1, max_frequency, 101)
     probabilities = probability_distribution(frequencies_array)
-    probabilities /= probabilities.sum()
+    probabilities /= probabilities.sum() #normalizzazione
     frequencies = numpy.random.choice(frequencies_array, size = num_components, p = probabilities)
     return frequencies
 
@@ -68,7 +68,7 @@ max_frequency = 100
 b = 10
 
 
-#Funzione geenratrice del pacchetto d'onda, sommando funzioni sinusoidali del tipo Asin(kx - wt) (soluzione dell'equazione delle onde)
+#Funzione generatrice del pacchetto d'onda, sommando funzioni sinusoidali del tipo A*sin(k*x - w*t) (soluzione dell'equazione delle onde), ad un istante dato da "frame"
 def generate_wave_packet(amplitudes_array, positions_array, frame, k_values, w_values):
     phase = k_values[:, numpy.newaxis] * positions_array - frame * w_values[:, numpy.newaxis]
     wave_packet = numpy.sum(amplitudes_array * numpy.sin(phase), axis = 0)
@@ -96,7 +96,7 @@ def grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
         Dispersion.K2K: numpy.linspace(0, 30, len(frequencies_array))
     }[Dispersion(dispersione)]
 
-    k_values = { #calcolo dei valori del numero d'onda per ogni frequenza
+    k_values = { #calcolo dei valori del numero d'onda per ogni frequenza componente il pacchetto, a seconda della dispersione
                  # v(k) = w(k)/k, k = 2pi/lambda, lambda = v/f ----> k = 2*pi*f/v(k)
                  # v è la velocità di fase
                  #dw/dk = velocità di gruppo, != v per sistemi dispersivi
@@ -133,7 +133,7 @@ def grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
         ax.set_xlim(left = 0)
     
     elif show_all: #se vera mostra sia il pacchetto d'onda che il relativo spettro di potenza
-        fig, ax = plt.subplots(2, 1, gridspec_kw={'height_ratios': [1, 1]})
+        fig, ax = plt.subplots(2, 1, gridspec_kw = {'height_ratios': [1, 1]})
         
         power_spectrum = calculate_power_spectrum(amplitudes_array, positions_array, 0, k_values, w_values, c)
         power_spectrum /= power_spectrum.max()
