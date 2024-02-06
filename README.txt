@@ -39,7 +39,7 @@ E' possibile selezionare il valore della costante "c" tra quelli contenuti in un
 fuori del limite superiore per l'asse x, oppure mostrerà un grafico troppo compatto e schiacciato lungo l'asse x. Si consiglia di
 provare soltanto valori che vanno da 10.000 a 300.000
 
----------------------------------------------------------------------ESECUZIONE----------------------------------------------------------------------------
+-----------------------------------------ESECUZIONE----------------------------------------------------
 
 Per eseguire il programma è NECESSARIO specificare, in ordine: la dispersione che si vuole "--dispersione" seguito da una delle
 seguenti opzioni (che corrispondono per numero di elenco alle definizioni date sopra per "w"):
@@ -64,7 +64,7 @@ generato, mostrandone anche l'evoluzioine temporale.
 E' disponibile l'opzione "--show_all" che, se vera, mostra sia il pacchetto di onde generato con le volute specifiche, sia
 il sorrispondente spettro di potenza.
 
------------------------------------------------------------------------ESEMPI--------------------------------------------------------------------------------
+------------------------------------------------ESEMPI------------------------------------------------------
 
 Alcuni esempi di chiamate sono:
 
