@@ -8,13 +8,13 @@ import tkinter
 #Classe dispersione: Contiene tutte le dispersioni consultabili
 #La definizione di ogni dispersione avviene nella funzione "grafico"
 class Dispersion(Enum):
-    SCK = "sck"       # w = sqrt(c*k)
-    CK = "ck"         # w = c*k
-    SBCK2 = "sbck2"   # w = sqrt(b + c*k^2)
-    CK2 = "ck2"       # w = c*k^2
-    CDK = "cdk"       # w = c/k
-    K4DC= "k4dc"      # w = k^4/c
-    K2K = "k2k"       # w = k^2 - k
+    SCK = "sqrt(c*k)"           # w = sqrt(c*k)
+    CK = "c*k"                  # w = c*k
+    SBCK2 = "sqrt(b + c*k^2)"   # w = sqrt(b + c*k^2)
+    CK2 = "c*k^2"               # w = c*k^2
+    CDK = "c/k"                 # w = c/k
+    K4DC= "k^4/c"               # w = k^4/c
+    K2K = "k^2 - k"             # w = k^2 - k
 
 #Classe "Grafico": elenco del numero di componenti disponibili per la costruzione dei pacchetti d'onda
 class Grafico(Enum):
@@ -342,28 +342,16 @@ def grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
 def run_gui():
     
     def start_animation(): #funzione di inizio animazione
-        try: # gestione degli errori di valore per numero di componenti e dispersione
             
-            #inizializzazione delle variabili da passare alla funzione "grafico"
-            num_components = int(entry_num_components.get())
-            dispersione = entry_dispersione.get()
-            num_frames = 100000
-            c = float(entry_c.get())
-            show_spectrum = var_spectrum.get() == 1
-            show_all = var_show_all.get() == 1
+        #inizializzazione delle variabili da passare alla funzione "grafico"
+        num_components = int(var_components.get())
+        dispersione = var_dispersione.get()
+        num_frames = 100000
+        c = float(entry_c.get())
+        show_spectrum = var_spectrum.get() == 1
+        show_all = var_show_all.get() == 1
             
-            if num_components not in [comp.value for comp in Grafico]:
-                raise ValueError("Valore del numero di componenti non valido:\n"
-                                 "Inserire un valore tra: 2, 20, 100, 200, 300, 400, 500, "
-                                 "600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 10000")
-
-            if dispersione not in [disp.value for disp in Dispersion]:
-                raise ValueError("Dispersione non valida:\n"
-                                 "Inserire una dispersione tra: sck, ck, ck2, sbck2, cdk, k4dc, k2k")
-            grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
-        
-        except ValueError as E:
-            print("Errore: ", E)    
+        grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)   
         
     #costruzione dell'interfaccia e definizione delle variabili in ingresso
     root = tkinter.Tk()
@@ -372,13 +360,19 @@ def run_gui():
 
     label_num_components = tkinter.Label(root, text = "Numero di componenti:")
     label_num_components.pack()
-    entry_num_components = tkinter.Entry(root)
-    entry_num_components.pack()
+    # Menù a tendina per selezionare il numero di componenti
+    var_components = tkinter.StringVar(root)
+    var_components.set(Grafico.G1000.value) # valore predefinito a 1000
+    optionmenu_components = tkinter.OptionMenu(root, var_components, *[comp.value for comp in Grafico])
+    optionmenu_components.pack()
 
     label_dispersione = tkinter.Label(root, text = "Tipo di dispersione:")
     label_dispersione.pack()
-    entry_dispersione = tkinter.Entry(root)
-    entry_dispersione.pack()
+    # Menù a tendina per selezionare la dispersione
+    var_dispersione = tkinter.StringVar(root)
+    var_dispersione.set(Dispersion.SCK.value)  # valore predefinito a SCK
+    optionmenu_dispersione = tkinter.OptionMenu(root, var_dispersione, *[disp.value for disp in Dispersion])
+    optionmenu_dispersione.pack()
 
     label_c = tkinter.Label(root, text = "Valore della costante c:")
     label_c.pack()
