@@ -1,7 +1,10 @@
-/***/ Nel seguente file sono contenute le istruzioni di esecuzinoe del file progetto "Progetto_mcf_pacchettodonde.py" \**\
+/***/ Nel seguente file sono contenute le istruzioni di esecuzione e visualizzazione dei contenuti del file progetto "ProjectPO.py" \**\
 
 Il programma è in grado di costruire animazioni temporali di pacchetti d'onda e relativi spettri di potenza
 con dispersioni e numero di componenti diversi, descrivendone il comportamento temporale.
+
+All'esecuzione del programma verrà aperta una piccola finestra dove si potranno scegliere il numero di componenti per la costruzione del grafico,
+la dispersione, il valore della costante "c", se mostrare lo spettro di potenza oppure sia spettro che pacchetto.
 
 Le dispersioni disponibili per il consulto sono:
 1) ---- w = sqrt(c * k)
@@ -13,6 +16,29 @@ Le dispersioni disponibili per il consulto sono:
 7) ---- w = k^2 - k
 
 dove "b" e "c" sono costanti arbitrarie.
+
+Il valore della costante "c" è preimpostata al valore di default 30.000. E' possibile modificarlo, anche se il valore di default è quello che fornisce una 
+maggiore chiarezza a livello visivo dei grafici.
+Per valori troppo bassi o troppo alti saranno visibili solo parti del grafico, in quanto fuori del limite superiore per l'asse x, oppure mostrerà un grafico troppo compatto e schiacciato lungo l'asse x. Valori di prova consigliati sono quelli che vanno da 10.000 a 300.000
+
+-----------------------------------------ESECUZIONE----------------------------------------------------
+
+Per eseguire il programma è sufficiente chamarlo da riga di comando, per esempio:
+
+python3 ProjectPO.py
+
+Verrà successivamente aperta una finestra di controllo dalla quale si potranno scegliere la dispersione desiderata, il numero di componenti per costruire il
+pacchetto d'onda, e si potrà scegliere se mostrarne lo spettro di potenza oppure sia spettro che pacchetto. Nel caso non si selezioni una opzione di
+visualizzazione verrà mostrato soltanto il pacchetto.
+
+Le opzioni per le dispersioni tra cui scegliere sono (che corrispondono per numero di elenco alle definizioni date sopra per "w"):
+1) ---- sck
+2) ---- sbck2
+3) ---- ck
+4) ---- ck2
+5) ---- cdk
+6) ---- k4dc
+7) ---- k2k
 
 Il numero delle componenti disponibili per costruire i pacchetti sono:
 * --- 2
@@ -32,49 +58,11 @@ Il numero delle componenti disponibili per costruire i pacchetti sono:
 * --- 4000
 * --- 5000
 * --- 10000
-!! NOTA: con un numero di componenti più grande di 3000 le animazioni potrebbero non essere molto fluide.
 
-E' possibile selezionare il valore della costante "c" tra quelli contenuti in un vettore di numeri INTERI da 0 a 3.000.000 compresi.
-!! Il valore di default di "c" è 30.000. Per valori troppo bassi o troppo alti saranno visibili solo parti del grafico, in quanto
-fuori del limite superiore per l'asse x, oppure mostrerà un grafico troppo compatto e schiacciato lungo l'asse x. Si consiglia di
-provare soltanto valori che vanno da 10.000 a 300.000
+Nel caso di inserimento di valori non validi per le dispersioni ed il numero di componenti verrà sollevato un errore dal programma e verrà mostrato un elenco
+delle opzioni disponibili.
 
------------------------------------------ESECUZIONE----------------------------------------------------
+!! NOTA: con un numero di componenti più grande di 2000 le animazioni potrebbero non essere molto fluide.
 
-Per eseguire il programma è NECESSARIO specificare, in ordine: la dispersione che si vuole "--dispersione" seguito da una delle
-seguenti opzioni (che corrispondono per numero di elenco alle definizioni date sopra per "w"):
-1) ---- sck
-2) ---- sbck2
-3) ---- ck
-4) ---- ck2
-5) ---- cdk
-6) ---- k4dc
-7) ---- k2k
+E' FACOLTATIVO poi cambiare valore alla costante c. Il valore preimpostato è 30.000, valore che rende una migliore chiarezza visiva dei grafici. 
 
-; il numero di componenti con il quale costruire il pacchetto d'onda attraverso "--grafico" seguito da una delle opzioni esposte precedentemente
-(2, 20, 100,...)
-
-; è FACOLTATIVO poi scegliere i valori della costante "c" (--c seguito dalle opzioni sopra).
-Nel caso questa non venga specificata verrà consederato il valore di default c = 30.000.
-
-
-E' disponibile l'opzione "--show_spectrum" che, se vera, mostra lo spettro di potenza del pacchetto d'onda
-generato, mostrandone anche l'evoluzioine temporale.
-
-E' disponibile l'opzione "--show_all" che, se vera, mostra sia il pacchetto di onde generato con le volute specifiche, sia
-il sorrispondente spettro di potenza.
-
-------------------------------------------------ESEMPI------------------------------------------------------
-
-Alcuni esempi di chiamate sono:
-
-1) python3 Progetto_mcf_pacchettodonde.py --dispersione sck --grafico 2000
-2) python3 Progetto_mcf_pacchettodonde.py --dispersione sck --grafico 2000 --c 22000  
-3) python3 Progetto_mcf_pacchettodonde.py --dispersione sbck2 --grafico 1000 --c 15000 --show_spectrum
-3) python3 Progetto_mcf_pacchettodonde.py --dispersione sbck2 --grafico 3000 --c 25000 --show_all
-
-I primi due esempi mostrano il pacchetto d'onda con dispersione sck, generato sommando 2000 componenti
-e con valori della costante "c" = 30.000 (default) nel primo caso e 22000 nel secondo.
-Il terzo esempio costruisce un pacchetto d'onda con dispersione sbck2, generato sommando 1000 componenti e valore
-di "c" = 15000, e ne mostra soltanto lo spettro di potenza.
-Il quarto esmepio mostra sia il pacchetto d'onde generato sommando 3000 componenti sia il suo spettro di potenza.
