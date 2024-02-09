@@ -342,17 +342,29 @@ def grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
 def run_gui():
     
     def start_animation(): #funzione di inizio animazione
+        try: # gestione degli errori di valore per numero di componenti e dispersione
+            
+            #inizializzazione delle variabili da passare alla funzione "grafico"
+            num_components = int(entry_num_components.get())
+            dispersione = entry_dispersione.get()
+            num_frames = 100000
+            c = float(entry_c.get())
+            show_spectrum = var_spectrum.get() == 1
+            show_all = var_show_all.get() == 1
+            
+            if num_components not in [comp.value for comp in Grafico]:
+                raise ValueError("Valore del numero di componenti non valido:\n"
+                                 "Inserire un valore tra: 2, 20, 100, 200, 300, 400, 500, "
+                                 "600, 700, 800, 900, 1000, 2000, 3000, 4000, 5000, 10000")
 
-        #inizializzazione delle variabili da passare alla funzione "grafico"
-        num_components = int(entry_num_components.get())
-        dispersione = entry_dispersione.get()
-        num_frames = 100000
-        c = float(entry_c.get())
-        show_spectrum = var_spectrum.get() == 1
-        show_all = var_show_all.get() == 1
-
-        grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
-
+            if dispersione not in [disp.value for disp in Dispersion]:
+                raise ValueError("Dispersione non valida:\n"
+                                 "Inserire una dispersione tra: sck, ck, ck2, sbck2, cdk, k4dc, k2k")
+            grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
+        
+        except ValueError as E:
+            print("Errore: ", E)    
+        
     #costruzione dell'interfaccia e definizione delle variabili in ingresso
     root = tkinter.Tk()
     root.title("Simulatore di pacchetti d'onda")
