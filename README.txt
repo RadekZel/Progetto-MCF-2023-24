@@ -28,17 +28,9 @@ Per eseguire il programma è sufficiente chamarlo da riga di comando, per esempi
 python3 ProjectPO.py
 
 Verrà successivamente aperta una finestra di controllo dalla quale si potranno scegliere la dispersione desiderata, il numero di componenti per costruire il
-pacchetto d'onda, e si potrà scegliere se mostrarne lo spettro di potenza oppure sia spettro che pacchetto. Nel caso non si selezioni una opzione di
-visualizzazione verrà mostrato soltanto il pacchetto.
+pacchetto d'onda, attraverso menù a tendina, e si potrà scegliere se mostrarne lo spettro di potenza oppure sia spettro che pacchetto. Nel caso non si selezioni una opzione di visualizzazione verrà mostrato soltanto il pacchetto.
 
-Le opzioni per le dispersioni tra cui scegliere sono (che corrispondono per numero di elenco alle definizioni date sopra per "w"):
-1) ---- sck
-2) ---- sbck2
-3) ---- ck
-4) ---- ck2
-5) ---- cdk
-6) ---- k4dc
-7) ---- k2k
+Le opzioni per le dispersioni tra cui scegliere sono quelle di elenco nelle definizioni date sopra per "w".
 
 Il numero delle componenti disponibili per costruire i pacchetti sono:
 * --- 2
@@ -58,9 +50,6 @@ Il numero delle componenti disponibili per costruire i pacchetti sono:
 * --- 4000
 * --- 5000
 * --- 10000
-
-Nel caso di inserimento di valori non validi per le dispersioni ed il numero di componenti verrà sollevato un errore dal programma e verrà mostrato un elenco
-delle opzioni disponibili.
 
 !! NOTA: con un numero di componenti più grande di 2000 le animazioni potrebbero non essere molto fluide.
 
