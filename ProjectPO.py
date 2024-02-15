@@ -99,16 +99,15 @@ def grafico(num_components, dispersione, num_frames, c, show_spectrum, show_all)
     Calcolo dei valori del numero d'onda per ogni frequenza componente il pacchetto, a seconda della dispersione.
         ---v(k) è la velocità di fase
         ---v(k) = w(k)/k, k = 2pi/lambda, lambda = v/f ----> k = 2*pi*f/v(k)
-        ---dw/dk = velocità di gruppo, != v per sistemi dispersivi
     '''
     k_values = { 
-        Dispersion.SCK: (4 * numpy.pi**2 * frequencies_array**2) / c,                     #v = sqrt(c/k) ---> k = 4*pi^2*f^2/c, dw/dk = .5*v
-        Dispersion.CK: (2 * numpy.pi * frequencies_array) / c,                            #v = c ---> k = 2*pi*f/c, dw/dk = v
-        Dispersion.CK2: numpy.sqrt((2 * numpy.pi * frequencies_array) / c),               #v = c*k ---> k = sqrt(2*pi*f/c), dw/dk = 2v
+        Dispersion.SCK: (4 * numpy.pi**2 * frequencies_array**2) / c,                     #v = sqrt(c/k) ---> k = 4*pi^2*f^2/c
+        Dispersion.CK: (2 * numpy.pi * frequencies_array) / c,                            #v = c ---> k = 2*pi*f/c
+        Dispersion.CK2: numpy.sqrt((2 * numpy.pi * frequencies_array) / c),               #v = c*k ---> k = sqrt(2*pi*f/c)
         Dispersion.SBCK2: numpy.sqrt((4 * numpy.pi**2 * frequencies_array**2 - b) / c),   #v = sqrt(b/k^2 + c) ---> k = sqrt(4*pi^2*f^2/c - b/c)
-        Dispersion.CDK: c / (2 * numpy.pi * frequencies_array),                           #v = c/k^2 ---> k = c/(2*pi*f), dw/dk = -v
-        Dispersion.K4DC: (2 * numpy.pi * frequencies_array * c)**(.25),                   #v = k^3/c ---> k = (2*pi*f*c)^(.25), dw/dk = 4v
-        Dispersion.K2K: (1 + numpy.sqrt(1 + 8 * numpy.pi * frequencies_array)) / 2        #v = k - 1 ---> k = 1/2 + sqrt(1 + 8*pi*f)/2, dw/dk = 2v
+        Dispersion.CDK: c / (2 * numpy.pi * frequencies_array),                           #v = c/k^2 ---> k = c/(2*pi*f)
+        Dispersion.K4DC: (2 * numpy.pi * frequencies_array * c)**(.25),                   #v = k^3/c ---> k = (2*pi*f*c)^(.25)
+        Dispersion.K2K: (1 + numpy.sqrt(1 + 8 * numpy.pi * frequencies_array)) / 2        #v = k - 1 ---> k = 1/2 + sqrt(1 + 8*pi*f)/2
     }[Dispersion(dispersione)]
     
     w_values = 2 * numpy.pi * frequencies_array #calcolo valori di omega: w = k*v = 2*pi*f
